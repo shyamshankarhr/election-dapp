@@ -22,8 +22,8 @@ contract Election {
 
 	// Constructor
 	constructor() public {
-		addCandidate("Candidate 1");
-		addCandidate("Candidate 2");
+		addCandidate("Chocolate");
+		addCandidate("Vanilla");
 	}
 
 	function addCandidate(string memory _name) private {

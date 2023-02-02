@@ -28,7 +28,7 @@ App = {
       App.contracts.Election = TruffleContract(election);
       // Connect provider to interact with contract
       App.contracts.Election.setProvider(App.web3Provider);
-      App.listenForEvents();
+      // App.listenForEvents();
       return App.render();
     });
   },
@@ -75,8 +75,10 @@ App = {
 
       var candidatesSelect = $('#candidatesSelect');
       candidatesSelect.empty();
+      console.log(candidatesCount.toNumber());
 
       for (var i = 1; i <= candidatesCount; i++) {
+        console.log('now');
         electionInstance.candidates(i).then(function(candidate) {
           var id = candidate[0];
           var name = candidate[1];
