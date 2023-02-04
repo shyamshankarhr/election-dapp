@@ -29,7 +29,7 @@ App = {
       // Connect provider to interact with contract
       App.contracts.Election.setProvider(App.web3Provider);
       // App.listenForEvents();
-      // return App.render();
+      return App.render();
     });
     $.getJSON("Register.json", function(register) {
       // Instantiate a new truffle contract from the artifact
@@ -95,7 +95,19 @@ App = {
       console.warn(error);
     });
 
-
+    App.contracts.Election.deployed().then(function(instance) {
+      instance.ended().then(function(end_status) {
+        ended = end_status;
+        console.log("End check");
+        console.log(end_status);
+        if (ended==true){
+          console.log('Endededdddd');
+          $("#votingPanel").hide();
+          $("#resultsPanel").show();
+        }
+        console.log("Here");            
+      })
+    });
 
     // Load contract data
     App.contracts.Election.deployed().then(function(instance) {
@@ -174,11 +186,66 @@ App = {
   },
 
 
+
+      
+
   endElection: function() {
-    console.log("End election prompted!");
-    $("#votingPanel").hide();
-    $("#resultsPanel").show();
-  }
+      // var candidateId = $('#candidatesSelect').val();
+      // var electionInst;
+      App.contracts.Election.deployed().then(function(i) {
+        electionInst = i;
+        electionInst.ended().then(function(en){console.log("Ended 1: "+en);});
+        electionInst.endElection(1, { from: App.account }).catch(function(err){console.log("oops!");console.log(err);});
+        electionInst.ended().then(function(en){console.log("Ended 2: "+en);});
+        console.log("passed that");
+      });
+      console.log("Yup");
+      // console.log(electionInst.ended());
+    //   });
+    //     instance.endElection().then(function(result) {  
+    //       console.log("Fuckkk yeahhh!");
+    //     }).catch(function(err) {
+    //     console.log("Here??");
+    //     console.error(err);
+    //   })}).catch(function(err) {
+    //   console.error(err);
+    // });
+  } 
+
+  // endElection: async function() {
+  //   try {
+  //     // var candidateId = $('#candidatesSelect').val();
+  //     App.contracts.Election.deployed().then(function(instance) {
+  //       instance.endElection();
+  //     }).then(function(result) {
+  //       // Wait for votes to update
+  //       console.log("success");
+  //       $("#votingPanel").hide();
+  //       $("#resultsPanel").show();
+  //     }).catch(function(err) {
+  //       console.log('ERORRRRRRRRRRR');
+  //       console.error(err);
+  //     });
+  //   }
+  //   catch (error) {
+  //     console.log("fuck off");
+  //   }
+  // }
+
+
+
+  // endElection: function() {
+  //   console.log("End election prompted!");
+  //   App.contracts.Election.deployed().then(function(instance) {
+  //     instance.endElection();
+  //   }).then(function(result) {
+  //     $("#votingPanel").hide();
+  //     $("#resultsPanel").show();
+  //   }).catch(function(err) {
+  //     console.error(err);
+  //   });
+  // }
+
 
 };
 

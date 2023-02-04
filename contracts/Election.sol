@@ -5,6 +5,8 @@ contract Election {
 	// Store accounts that have voted
 	mapping(address => bool) public voters;
 
+	bool public ended;
+
 	// Model a candidate
 	struct Candidate {
 		uint id;
@@ -24,6 +26,7 @@ contract Election {
 	constructor() {
 		addCandidate("Chocolate");
 		addCandidate("Vanilla");
+		ended = false;
 	}
 
 	function addCandidate(string memory _name) private {
@@ -34,10 +37,9 @@ contract Election {
 	function vote(uint _candidateId) public {
 
 		// require that they haven't voted before
-		require(!voters[msg.sender]);
-
 		// require a valid candidate
-		require(_candidateId > 0 && _candidateId <= candidatesCount);
+
+		require(!voters[msg.sender] && _candidateId > 0 && _candidateId <= candidatesCount && !ended);
 
 		// record that voter has voted
 		voters[msg.sender] = true;
@@ -47,5 +49,11 @@ contract Election {
 
 		// trigger voting event
 		emit votedEvent(_candidateId);
+	}
+
+	function endElection(uint _candidateId) public {
+
+		ended = true;
+
 	}
 }

@@ -14,11 +14,6 @@
   -webkit-user-select: none;
   touch-action: manipulation;
 }
-/*
-.button-test {
-  position: relative;
-
-}*/
 
 .button-85:before {
   content: "";
