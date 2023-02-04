@@ -1,4 +1,4 @@
-pragma solidity ^0.5.16;
+pragma solidity 0.8.7;
 
 contract Election {
 
@@ -21,7 +21,7 @@ contract Election {
 	event votedEvent(uint indexed _candidateId);
 
 	// Constructor
-	constructor() public {
+	constructor() {
 		addCandidate("Chocolate");
 		addCandidate("Vanilla");
 	}

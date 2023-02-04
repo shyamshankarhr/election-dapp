@@ -29,6 +29,14 @@ App = {
       // Connect provider to interact with contract
       App.contracts.Election.setProvider(App.web3Provider);
       // App.listenForEvents();
+      // return App.render();
+    });
+    $.getJSON("Register.json", function(register) {
+      // Instantiate a new truffle contract from the artifact
+      App.contracts.Register = TruffleContract(register);
+      // Connect provider to interact with contract
+      App.contracts.Register.setProvider(App.web3Provider);
+      // App.listenForEvents();
       return App.render();
     });
   },
@@ -51,8 +59,13 @@ App = {
 
   render: function() {
     var electionInstance;
+    var registerInstance;
+
     var loader = $("#loader");
     var content = $("#content");
+
+    var verifyPanel = $("#verifyPanel");
+    var votingPanel = $("#votingPanel");
 
     loader.show();
     content.hide();
@@ -65,6 +78,25 @@ App = {
       }
     });
 
+
+    // Load verification status
+    App.contracts.Register.deployed().then(function(instance) {
+      return instance.isEligble(App.account);
+    }).then(function(isElig) {
+      if (isElig==true){
+        votingPanel.show();
+        verifyPanel.hide();
+        // $("#addressRegistrationStatus").html("Verification Success. Your account is registered");
+      }
+      else {
+        $("#addressRegistrationStatus").html("");
+      }
+    }).catch(function(error) {
+      console.warn(error);
+    });
+
+
+
     // Load contract data
     App.contracts.Election.deployed().then(function(instance) {
       electionInstance = instance;
@@ -75,10 +107,8 @@ App = {
 
       var candidatesSelect = $('#candidatesSelect');
       candidatesSelect.empty();
-      console.log(candidatesCount.toNumber());
 
       for (var i = 1; i <= candidatesCount; i++) {
-        console.log('now');
         electionInstance.candidates(i).then(function(candidate) {
           var id = candidate[0];
           var name = candidate[1];
@@ -98,6 +128,17 @@ App = {
       // Do not allow a user to vote
       if(hasVoted) {
         $('form').hide();
+        var chosen;
+        App.contracts.Election.deployed().then(function(i) {
+          i.candidates($('#candidatesSelect').val()).then(function(j) {
+            console.log(j);
+            chosen=j[1]; // Careful: hardcoded index for name
+            console.log(chosen);
+            $('#voteStatus').show();
+            // $("#voteStatusText").html("You have voted for <b>"+chosen+"</b>! Thanks for participating.");
+            $("#voteStatusText").html("Thanks for voting!");
+          })
+        });        
       }
       loader.hide();
       content.show();
@@ -117,7 +158,28 @@ App = {
     }).catch(function(err) {
       console.error(err);
     });
+  },
+
+
+  registerAddr: function() {
+    var passc = $('#passc').val();
+    App.contracts.Register.deployed().then(function(instance) {
+      return instance.verify(passc, { from: App.account });
+    }).then(function(result) {
+      $("#content").hide();
+      $("#loader").show();
+    }).catch(function(err) {
+      console.error(err);
+    });
+  },
+
+
+  endElection: function() {
+    console.log("End election prompted!");
+    $("#votingPanel").hide();
+    $("#resultsPanel").show();
   }
+
 };
 
 $(function() {
