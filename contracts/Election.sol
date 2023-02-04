@@ -53,6 +53,8 @@ contract Election {
 
 	function endElection(uint _candidateId) public {
 
+		require(!ended);
+
 		ended = true;
 
 	}

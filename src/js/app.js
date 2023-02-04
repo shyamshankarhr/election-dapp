@@ -102,6 +102,7 @@ App = {
         console.log(end_status);
         if (ended==true){
           console.log('Endededdddd');
+          $("#verifyPanel").hide();
           $("#votingPanel").hide();
           $("#resultsPanel").show();
         }
@@ -183,68 +184,23 @@ App = {
     }).catch(function(err) {
       console.error(err);
     });
-  },
-
-
-
-      
+  },      
 
   endElection: function() {
       // var candidateId = $('#candidatesSelect').val();
       // var electionInst;
       App.contracts.Election.deployed().then(function(i) {
         electionInst = i;
-        electionInst.ended().then(function(en){console.log("Ended 1: "+en);});
         electionInst.endElection(1, { from: App.account }).catch(function(err){console.log("oops!");console.log(err);});
-        electionInst.ended().then(function(en){console.log("Ended 2: "+en);});
-        console.log("passed that");
+        $("#votingPanel").hide();
+        $("#resultsPanel").show();
+        $('#resultDeclaration').show();
+        $("#resultText").html(electionInst.candidates(1).voteCount);
       });
-      console.log("Yup");
-      // console.log(electionInst.ended());
-    //   });
-    //     instance.endElection().then(function(result) {  
-    //       console.log("Fuckkk yeahhh!");
-    //     }).catch(function(err) {
-    //     console.log("Here??");
-    //     console.error(err);
-    //   })}).catch(function(err) {
-    //   console.error(err);
-    // });
+      
   } 
 
-  // endElection: async function() {
-  //   try {
-  //     // var candidateId = $('#candidatesSelect').val();
-  //     App.contracts.Election.deployed().then(function(instance) {
-  //       instance.endElection();
-  //     }).then(function(result) {
-  //       // Wait for votes to update
-  //       console.log("success");
-  //       $("#votingPanel").hide();
-  //       $("#resultsPanel").show();
-  //     }).catch(function(err) {
-  //       console.log('ERORRRRRRRRRRR');
-  //       console.error(err);
-  //     });
-  //   }
-  //   catch (error) {
-  //     console.log("fuck off");
-  //   }
-  // }
 
-
-
-  // endElection: function() {
-  //   console.log("End election prompted!");
-  //   App.contracts.Election.deployed().then(function(instance) {
-  //     instance.endElection();
-  //   }).then(function(result) {
-  //     $("#votingPanel").hide();
-  //     $("#resultsPanel").show();
-  //   }).catch(function(err) {
-  //     console.error(err);
-  //   });
-  // }
 
 
 };
