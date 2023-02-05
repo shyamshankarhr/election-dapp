@@ -3,9 +3,14 @@ const registerContract = JSON.parse(fs.readFileSync('../build/contracts/Register
 const Election = artifacts.require("./Election.sol");
 const theQuestion = "what is superior?"
 const candidateNames = ["Chocolate", "Vanilla"];
-//const registrationContractAddress = registerContract.networks[5].address;
-console.log(registerContract.networks);
-const registrationContractAddress = registerContract.networks[5777].address;
+try {
+  var registrationContractAddress = registerContract.networks[5].address;
+
+} catch (e){
+   var registrationContractAddress = registerContract.networks[5777].address;
+   console.log("here");
+};
+
 const startElectionTime = 1675431565;
 const endElectionTime = 1775431565;
 
