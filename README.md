@@ -28,4 +28,4 @@ Great! You have deployed the smart contracts to the goerli testnet.
 
 ## Open the dapp to interact with the smart contracts
 Now that the contracts are deployed you can open the Dapp by executing
-		`npm run dev --goerli`
+		`npm run dev --network goerli`
