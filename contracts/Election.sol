@@ -67,7 +67,8 @@ contract Election {
 			_candidateId > 0 && 
 			_candidateId <= candidatesCount && 
 			!ended && 
-			isEligble(msg.sender));
+			isEligble(msg.sender) &&
+			block.timestamp > StartElectionTime);
 
 		// record that voter has voted
 		voters[msg.sender] = true;
@@ -79,9 +80,9 @@ contract Election {
 		emit votedEvent(_candidateId);
 	}
 
-	function endElection(uint _candidateId) public {
+	function endElection() public {
 
-		require(!ended);
+		require(ended == false && block.timestamp > EndElectionTime);
 
 		ended = true;
 

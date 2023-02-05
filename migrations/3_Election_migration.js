@@ -11,8 +11,8 @@ try {
    console.log("here");
 };
 
-const startElectionTime = 1675431565;
-const endElectionTime = 1775431565;
+const startElectionTime = 1675113699;
+const endElectionTime = 1675200099;
 
 module.exports = function(deployer) {
   deployer.deploy(
