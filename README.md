@@ -5,11 +5,11 @@ You should preferably run this code in linux. Windows might have problems. It of
 1. Clone the repository
 2. Install npm and nodejs
 3. From inside the root of the project install, which is a framework for Smart Contract development
-		npm install -g truffle
+		`npm install -g truffle`
 4. Install the package to import from .env -files
-        npm install dotenv
+        `npm install dotenv`
 5. Install the hdwallet provider package to use your metamask inside your project.
-        npm install @truffle/hdwallet-provider
+        `npm install @truffle/hdwallet-provider`
 
 ## Install Metamask
 In Chrome or Mozilla Firefox you must add the Metamask extension. Metamask is an Ethereum wallet application, which you need to interact with smart contracts and the Ethereum blockchain in general. You can add Metamask to your browser as any other add-in. Follow the instruction in this [link](https://metamask.zendesk.com/hc/en-us/articles/360015489531-Getting-started-with-MetaMask) for assistence. Create a new wallet by following all instructions.
