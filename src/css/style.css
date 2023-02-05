@@ -1,3 +1,7 @@
+
+/* End Election Button */
+/*=====================*/
+
 .button-85 {
   padding: 0.6em 2em;
   border: none;
@@ -65,4 +69,379 @@
   left: 0;
   top: 0;
   border-radius: 10px;
+}
+
+
+/*=====================*/
+/* Login Page  */
+/*=====================*/
+
+
+.main-content{
+  width: 95%;
+  border-radius: 20px;
+  box-shadow: 0 5px 5px rgba(0,0,0,.4);
+  margin: 5em auto;
+  display: flex;
+}
+.company__info{
+  background-color: #008080;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #fff;
+}
+.fa-android{
+  font-size:3em;
+}
+@media screen and (max-width: 640px) {
+  .main-content{width: 90%;}
+  .company__info{
+    display: none;
+  }
+  .login_form{
+    border-top-left-radius:20px;
+    border-bottom-left-radius:20px;
+  }
+}
+@media screen and (min-width: 642px) and (max-width:800px){
+  .main-content{width: 70%;}
+}
+.row > h3{
+  color:#008080;
+}
+.login_form{
+  background-color: #fff;
+  border-top-right-radius:20px;
+  border-bottom-right-radius:20px;
+  border-top:1px solid #ccc;
+  border-right:1px solid #ccc;
+}
+form{
+  padding: 0 2em;
+}
+.form__input{
+  width: 100%;
+  border:0px solid transparent;
+/*  border-radius: 0;*/
+  border-bottom: 1px solid #aaa;
+  padding: 1em .5em .5em;
+  padding-left: 2em;
+  outline:none;
+  margin:1.5em auto;
+  transition: all .5s ease;
+  border-bottom-color: #008080;
+  box-shadow: 0 0 5px rgba(0,80,80,.4); 
+  border-radius: 4px;
+}
+.form__input:focus{
+  border-bottom-color: #008080;
+  box-shadow: 0 0 5px rgba(0,80,80,.4); 
+  border-radius: 4px;
+}
+.btn{
+  transition: all .5s ease;
+  width: 70%;
+  border-radius: 30px;
+  color:#008080;
+  font-weight: 600;
+  background-color: #fff;
+  border: 1px solid #008080;
+  margin-top: 1.5em;
+  margin-bottom: 1em;
+}
+.btn:hover, .btn:focus{
+  background-color: #008080;
+  color:#fff;
+}
+
+
+/*=====================*/
+/* Loader  */
+/*=====================*/
+/*
+#loaderHTML { 
+  background: #0C0019;
+  overflow: auto;
+}*/
+
+.loader-container {
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+#redblocks > * {
+    transform: translate3d(160px, -93px, 0);
+    animation: moveblocks 4s 1s ease infinite;
+}
+
+@keyframes moveblocks {
+    0% {
+        transform: translate3d(160px, -93px, 0);
+    }
+    50%,
+    100% {
+        transform: translate(0);
+    }
+}
+
+#firstBlock {
+    transform: translate3d(160px, -93px, 0);
+    animation: firstBlock 4s 1s ease infinite;
+}
+#blockdis {
+    animation: blockdis 4s 1s ease infinite;
+}
+@keyframes blockdis {
+    30% {
+        opacity: 1;
+    }
+    40%, 100% {
+        opacity: 0;
+        transform: translate3d(-160px, 93px, 0);
+    }
+}
+@keyframes firstBlock {
+    0%,
+    15% {
+        opacity: 0;
+    }
+    40%,
+    100% {
+        opacity: 1;
+    }
+}
+
+@for $i from 1 to 5 {
+    #redblocksparticles g:nth-child(#{$i}) polygon {
+        opacity: 0.35;
+        animation: glow 4s 1s ease infinite;
+    }
+}
+@for $i from 1 to 20 {
+    #redblocksparticles g:nth-child(1) g circle:nth-child(#{$i}){
+        animation: dots 4s #{1000+$i*50}ms ease infinite;
+    }
+    #redblocksparticles g:nth-child(2) g circle:nth-child(#{$i}){
+        animation: dots 4s #{1000+$i*50}ms ease infinite;
+    }
+    #redblocksparticles g:nth-child(3) g circle:nth-child(#{$i}){
+        animation: dots 4s #{1000+$i*50}ms ease infinite;
+    }
+    #redblocksparticles g:nth-child(4) g circle:nth-child(#{$i}){
+        animation: dots 4s #{1000+$i*50}ms ease infinite;
+    }
+}
+@keyframes glow {
+    0%,
+    45% {
+        opacity: 0;
+    }
+    60%, 100% {
+        opacity: 0.35;
+    }
+}
+
+@keyframes dots {
+    0%,
+    35% {
+        transform: translate(0);
+        opacity: 0;
+    }
+    60%, 80% {
+        transform: translate(55px, -35px);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(55px, -35px);
+        opacity: 0;
+    }
+}
+
+@for $i from 1 to 22 {
+    #purplebg > :nth-child(#{$i}) {
+        animation: up 2s #{$i* 500}ms ease infinite alternate;
+    }
+}
+
+@keyframes up {
+    to {
+        transform: translate(0, -25px);
+    }
+}
+
+@for $i from 1 to 13 {
+    #bottomparticles > :nth-child(#{$i}){
+        animation: particles 4s #{$i*300}ms ease infinite alternate, p 2s ease infinite alternate;
+    }
+    #bottomparticles2 > :nth-child(#{$i}){
+        animation: particles 4s #{$i*300}ms ease infinite alternate, p 2s ease infinite alternate;
+    }
+    #redglowparticles > :nth-child(#{$i}){
+        animation: particles 4s #{$i*300}ms ease infinite alternate, p 2s ease infinite alternate;
+    }
+
+}
+@keyframes p {
+    85%,
+     100% {
+        opacity: 0;
+    }
+}
+
+@keyframes particles {
+    0%, 100% {
+        transform: translate(0);
+    }
+    50% {
+        transform: translate(10px, 15px);
+    }
+}
+
+.particlespoly {
+    animation: p 2s ease infinite alternate;
+}
+
+@for $i from 1 to 4 {
+    #d-app g:nth-child(#{$i}){
+        animation: updown 2s #{$i*200}ms ease-in-out infinite alternate;
+    }
+}
+@for $i from 1 to 4 {
+    #d-apps2 g:nth-child(#{$i}){
+        animation: updown 2s #{$i*200}ms ease-in-out infinite alternate;
+    }
+}
+@for $i from 1 to 20 {
+    #d-apps2wrapper g:nth-child(3) g > circle:nth-child(#{$i}){
+        animation: updown 2s #{$i*50}ms ease infinite alternate;
+    }
+}
+@for $i from 1 to 20 {
+    #d-appswrapper g:nth-child(2) g > circle:nth-child(#{$i}){
+        animation: updown 2s #{$i*50}ms ease infinite alternate;
+    }
+}
+
+
+@keyframes updown {
+    100% {
+        transform: translate(0, -20px);
+    }
+}
+
+#Layer_1 > g:nth-child(2) > g:nth-child(18) > g:nth-child(12) {
+    animation: arrows 1s ease-in-out infinite alternate, p 2s ease infinite alternate;
+}
+@keyframes arrows {
+    to {
+        transform: translate(25px, 25px);
+    }
+}
+
+#Layer_1 > g:nth-child(2) > g:nth-child(17) > g:nth-child(13) {
+    animation: arrows2 1s ease-in-out infinite alternate, p 2s ease infinite alternate;
+}
+@keyframes arrows2 {
+    to {
+        transform: translate(-25px, -25px);
+    }
+}
+
+#Layer_1 > g:nth-child(2) > g:nth-child(17) > g:nth-child(12) {
+    animation: arrows 1s ease-in-out infinite alternate, p 2s ease infinite alternate;
+}
+
+
+
+/*=====================*/
+/* Voting Items  */
+/*=====================*/
+
+
+.images-selector {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #F5F5F5;
+}
+
+.images-selector input {
+  position: absolute;
+  z-index: 20;
+}
+
+.images-selector input:checked + .img-card {
+  filter: none;
+  transform: scaleY(1);
+}
+
+.img-card {
+  display: inline-block;
+  width: 250px;
+  height: 200px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  transition: all 200ms ease-in;
+  filter: grayscale(1) opacity(.8);
+}
+
+.img-card:hover {
+  filter: grayscale(0) opacity(1);
+/*   box-shadow:  0px 8px 4px rgba(0, 0, 0, 0.3),
+               0px 10px 2px rgba(0, 0, 0, 0.1); */
+}
+
+.img-card::before,
+.img-card::after {
+  transform: scaleY(-1);
+}
+
+/*reflection*/
+.img-card:hover::after {
+  content: '';
+  background-image: inherit;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: cover;
+  width: inherit;
+  height: 40%;
+  position: absolute;
+  bottom: -25%;
+}
+
+/*fade reflection*/
+.img-card:hover::before {
+  content: '';
+  width: inherit;
+  height: 42%;
+  position: absolute;
+  bottom: -25%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, .9),rgba(255, 255, 255, .5));
+  z-index: 1;
+}
+
+.img1 {
+  background-image: url(https://images.unsplash.com/photo-1442689859438-97407280183f?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ);
+}
+
+.img2 {
+  background-image: url(https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ);
+}
+
+.img3 {
+  background-image: url(https://images.unsplash.com/photo-1513360371669-4adf3dd7dff8?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ);
+}
+
+.img4 {
+  background-image: url(https://images.unsplash.com/photo-1549488235-42996ae3b650?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ);
 }

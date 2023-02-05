@@ -4,6 +4,8 @@ contract Register {
 
     mapping(address => bool) public EligbleVotersAddresses;
     mapping(bytes32 => bool) public RegisteredStudentHashes;
+    mapping(bytes32 => bool) public VerifiedStudentHashes; 
+
 
     constructor(bytes32[] memory studentHashes) {
         for (uint32 i = 0; i < studentHashes.length; i++){
@@ -25,8 +27,12 @@ contract Register {
     }
     function verify(string memory passcode) public {
         bytes32 hash = sha256(abi.encodePacked(passcode));
+        if (VerifiedStudentHashes[hash] == true){
+            revert();
+        }
 
-        if (RegisteredStudentHashes[hash] == true) {
+        if (RegisteredStudentHashes[hash] == true /*&& VerifiedStudentHashes[hash] == false*/) {
+            VerifiedStudentHashes[hash] = true;   // 
             EligbleVotersAddresses[msg.sender] = true;
         }
     }
