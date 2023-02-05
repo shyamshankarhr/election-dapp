@@ -26,7 +26,8 @@
           <hr/>
           <br/>
           <div id="loader">
-            <p class="text-center">Loading...</p>
+            <div id="loaderHTML"></div>
+            <!-- <p>Loading ...</p> -->
           </div>
           <div id="content" style="display: none;">
             <div id="resultsPanel" style="display: none;">
@@ -44,19 +45,7 @@
               </table>
               <hr/>
             </div>
-            <div id="votingPanel" style="display: none;">
-              <form onSubmit="App.castVote(); return false;">
-                <div class="form-group">
-                  <label for="candidatesSelect">Select Candidate</label>
-                  <select class="form-control" id="candidatesSelect">
-                  </select>
-                </div>
-                <button type="submit" class="btn btn-primary">Vote</button>
-                <hr />
-              </form>
-            </div>
             <div id="verifyPanel">
-
               <div class="container-fluid">
                 <div class="row main-content bg-success text-center">
                   <div class="col-md-4 text-center company__info">
@@ -84,24 +73,34 @@
                           <div class="row">
                             <p id="accountAddress" class="text-center"></p>
                           </div>
-                          
                         </form>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-
               <!-- <p id="accountAddress" class="text-center"></p> -->
               <p id="addressRegistrationStatus" class="text-center"></p>
-              <!-- <form onsubmit="App.registerAddr(); return false;">
-                <label for="passc">Enter your passcode to verify:</label><br>
-                <input type="password" id="passc" name="passc" value=""><br><br>
-                <input type="submit" value="Submit">
-              </form> -->
             </div> 
+            
+
+            <!-- Voting Panel -->
+
+            <div id="votingPanel" style="display: none;">
+              <form onSubmit="App.castVote(); return false;">
+                <!-- <div id="votingItems"></div> -->
+                <div class="form-group">
+                  <label for="candidatesSelect">Select Candidate</label>
+                  <select class="form-control" id="candidatesSelect">
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Vote</button>
+                <hr/>
+              </form>
+            </div>
+            
             <div id="voteStatus" style="display: none;">
-              <p id="voteStatusText" class="text-center">Testtttt</p>
+              <p id="voteStatusText" class="text-center"></p>
             </div>
             <div id="resultDeclaration" style="display: none;">
               <p id="resultText" class="text-center"></p>
@@ -120,6 +119,16 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/web3.min.js"></script>
     <script src="js/truffle-contract.js"></script>
+    <script> 
+      $(function(){
+        $("#loaderHTML").load("html/loader.html"); 
+      });
+    </script>
+    <script> 
+      $(function(){
+        $("#votingItems").load("html/votingpage.html"); 
+      });
+    </script> 
     <script src="js/app.js"></script>
   </body>
 </html>
