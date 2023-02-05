@@ -66,6 +66,7 @@ App = {
 
     var verifyPanel = $("#verifyPanel");
     var votingPanel = $("#votingPanel");
+    var endElectionPanel = $("#endElection");
 
     loader.show();
     content.hide();
@@ -74,7 +75,7 @@ App = {
     web3.eth.getCoinbase(function(err, account) {
       if (err === null) {
         App.account = account;
-        $("#accountAddress").html("Your Account: " + account);
+        $("#accountAddress").html("<b>Your Account Address:</b> <br>" + account);
       }
     });
 
@@ -85,6 +86,7 @@ App = {
     }).then(function(isElig) {
       if (isElig==true){
         votingPanel.show();
+        endElectionPanel.show();
         verifyPanel.hide();
         // $("#addressRegistrationStatus").html("Verification Success. Your account is registered");
       }
@@ -104,6 +106,7 @@ App = {
           console.log('Endededdddd');
           $("#verifyPanel").hide();
           $("#votingPanel").hide();
+          $("#endElectionPanel").hide();
           $("#resultsPanel").show();
         }
         console.log("Here");            
@@ -199,9 +202,6 @@ App = {
       });
       
   } 
-
-
-
 
 };
 
