@@ -1,11 +1,12 @@
 # A Decentralized Voting System on the Ethereum Blockchain – A Solution to the Lack of Trust in Elections?
 ## Running the Code. 
-You should preferably run this code in linux. Windows might have problems. It often has when running Ethereum related projects. <br>
+You should preferably run this code in linux (use sudo when installing packages). Windows might have problems. It often has when running Ethereum related projects. <br>
 ## Install dependencies. Preferably install all packages with sudo.
 1. Clone the repository
 2. Install npm and nodejs
-3. From inside the root of the project install, which is a framework for Smart Contract development
-		`npm install -g truffle`
+3. From inside the root of the project install truffle, which is a framework for Smart Contract development
+	`npm install`	
+	`npm install -g truffle`
 4. Install the package to import from .env -files
         `npm install dotenv`
 5. Install the hdwallet provider package to use your metamask inside your project.
