@@ -5,7 +5,7 @@ You should preferably run this code in linux (use sudo when installing packages)
 1. Clone the repository
 2. Install npm and nodejs
 3. From inside the root of the project install truffle, which is a framework for Smart Contract development
-	`npm install`	
+	`npm install`	<br>
 	`npm install -g truffle`
 4. Install the package to import from .env -files
         `npm install dotenv`
