@@ -6,6 +6,8 @@ contract Register {
     mapping(bytes32 => bool) public RegisteredStudentHashes;
     mapping(bytes32 => bool) public VerifiedStudentHashes; 
 
+    event verifiedEvent();
+
 
     constructor(bytes32[] memory studentHashes) {
         for (uint32 i = 0; i < studentHashes.length; i++){
@@ -35,6 +37,10 @@ contract Register {
             VerifiedStudentHashes[hash] = true;   // 
             EligbleVotersAddresses[msg.sender] = true;
         }
+
+        // trigger verified event
+        emit verifiedEvent();
+
     }
 
 }
